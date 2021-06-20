@@ -10,7 +10,7 @@
     <nav class="p-6 bg-white flex justify-between">
         <ul class="flex items-center">
             <li> 
-                <a href="" class="p-3">Home</a>
+                <a href="{{ route('home') }}" class="p-3">Home</a>
             </li> 
 
             @auth
@@ -18,7 +18,7 @@
                     <a href="{{ route('dashboard') }}" class="p-3">Dashboard</a>
                 </li>
                 <li> 
-                    <a href="" class="p-3">Posts</a>
+                    <a href="{{ route('posts') }}" class="p-3">Posts</a>
                 </li>
             @endauth
         </ul>
@@ -29,7 +29,11 @@
                 <a href="" class="p-3">Olamide Kehinde </a>
             </li> 
             <li> 
-                <a href="" class="p-3">Logout</a>
+                <form action="{{ route('logout') }}" method="post" class="p-3 inline">
+                    @csrf 
+                    <button type="submit">Logout</a>
+                </form>
+                
             </li>
         @endauth
 
