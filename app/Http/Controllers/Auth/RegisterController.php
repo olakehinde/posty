@@ -9,6 +9,10 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
+    public function __construct() {
+        $this->middleware(['guest']);
+    }
+    
     /**
      * Show the form for creating a new user.
      *
