@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostLikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::post('/posts', [PostController::class, 'store']);
+
+Route::post('/posts/{post}/likes', [PostLikeController::class, 'like'])->name('posts.like');
+Route::delete('/posts/{post}/likes', [PostLikeController::class, 'unlike'])->name('posts.like');
 
 Route::get('/', function () {
     return view('home');
