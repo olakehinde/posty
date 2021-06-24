@@ -26,17 +26,15 @@
                     <div class="mb-4">
                         <a href="" class="font-bold">{{ $post->user->name }}</a> <span class="text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }}</span>
                         
-                        <p class="mb-2">{{ $post->body }}</p>  
-
-                        @if ($post->ownedBy(auth()->user()))
-                            <div>
-                                <form action="{{ route('posts.delete', $post) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-blue-500">Delete</button>
-                                </form>
-                            </div>
-                        @endif
+                        <p class="mb-2">{{ $post->body }}</p> 
+                        
+                        @can('delete', $post)
+                            <form action="{{ route('posts.delete', $post) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-blue-500">Delete</button>
+                            </form>
+                        @endcan
 
                         <div class="flex items-center">
                             @auth
