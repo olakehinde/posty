@@ -18,7 +18,10 @@ class PostLikeController extends Controller
             'user_id' => $request->user()->id,
         ]);
         
-        Mail::to($post->user)->send(new PostLiked(auth()->user(), $post));
+        // checks if the currently authenticated user has already like this post before (and unliked it) before liking it again so that we dont spam the post owner with email.
+        if (!$post->likes()->onlyTrashed()->where('user_id', $request->user()->id)->count()) {
+                Mail::to($post->user)->send(new PostLiked(auth()->user(), $post)); 
+        }        
 
         return back();
     }
