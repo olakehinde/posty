@@ -6,19 +6,24 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
+use App\Models\Post;
 
 class PostLiked extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $liker, $post;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $liker, Post $post)
     {
-        //
+        $this->liker = $liker;
+        $this->post = $post;
     }
 
     /**
