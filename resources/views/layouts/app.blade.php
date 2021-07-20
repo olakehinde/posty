@@ -12,13 +12,12 @@
             <li> 
                 <a href="{{ route('home') }}" class="p-3">Home</a>
             </li> 
-
+            <li> 
+                <a href="{{ route('posts') }}" class="p-3">Posts</a>
+            </li>
             @auth
                 <li> 
                     <a href="{{ route('dashboard') }}" class="p-3">Dashboard</a>
-                </li>
-                <li> 
-                    <a href="{{ route('posts') }}" class="p-3">Posts</a>
                 </li>
             @endauth
         </ul>
